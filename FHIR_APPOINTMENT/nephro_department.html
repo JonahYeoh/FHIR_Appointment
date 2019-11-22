@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Nephrology</title>
+    <style>
+        #form1 {
+            margin-left: auto;
+            margin-right: auto;
+            width: 1300px;
+            border: 1px groove darkgoldenrod;
+            overflow: hidden;
+        }
+        
+        #table1 {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #table1 tr th,
+        #table1 tr td {
+            border: 1px groove darkblue;
+            border-collapse: collapse;
+            min-width: 150px;
+        }
+        
+        #table1 tr th {
+            min-height: 50px;
+        }
+        
+        #table1 tr td {
+            min-height: 75px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function put(information) {
+            console.log(information);
+        }
+    </script>
 </head>
+
 <body>
-    
+    <form id="form1">
+        <table id="table1">
+            <tr>
+                <th>Session/Day</th>
+                <th>23-12-2019(Mon)</th>
+                <th>24-12-2019(Tue)</th>
+                <th>25-12-2019(Wed)</th>
+                <th>26-12-2019(Thu)</th>
+                <th>27-12-2019(Fri)</th>
+                <th>28-12-2019(Sat)</th>
+                <th>29-12-2019(Sun)</th>
+            </tr>
+            <tr>
+                <td>Morning Session</td>
+                <td><input type="button" class="btn" onclick="put('2019-12-23');" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Afternoon Session</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
 </body>
+
 </html>
