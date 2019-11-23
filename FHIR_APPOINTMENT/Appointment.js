@@ -38,13 +38,13 @@ var Appointment = {
         "text": "Clinical Examination"
     }],
     "priority": 5,
-    "description": "Previously unscheduled visit",
+    "description": "Specialist Review",
     "minutesDuration": 15,
     "slot": [{
         "reference": "Slot/slotExample"
     }],
     "created": "2013-12-02",
-    "comment": "Further expand on the results of the MRI and determine the next actions that may be appropriate.",
+    "comment": "Empty comment",
     "participant": [{
             "actor": {
                 "reference": "Patient/Cool90",
@@ -87,15 +87,40 @@ var Appointment = {
 };
 
 function updateNephrology(slotId, practitionerId, apptType, date, patientName, patientId) {
-    Appointment.slot.reference = "Slot/" + slotId;
+    Appointment.id = "apt.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
+    Appointment.slot[0].reference = "Slot/" + slotId;
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let dt = d.getDate();
+    let today = year + "-" + month + "-" + dt;
+    Appointment.created = today;
     Appointment.participant[3].actor.reference = "Practitioner/" + practitionerId;
     if (practitionerId != "AVT987")
         Appointment.participant[3].actor.display = "Dr. Samuel";
+    Appointment.participant[0].actor.reference = "Patient/" +　patientId;
+    Appointment.participant[0].actor.display = patientName;
     Appointment.appointmentType.coding[0].code = apptType;
     if (apptType != "WALKIN")
         Appointment.appointmentType.coding[0].display = "A follow up visit from a previous appointment";
     Appointment.requestedPeriod[0].start = date;
     Appointment.requestedPeriod[0].end = date;
+    var url = "http://hapi.fhir.org/baseDstu3/Appointment/" + Appointment.id;
+    var data = JSON.stringify(Appointment);
+    HTTPPutData(url,data);
+}
 
+function HTTPPutData(urlStr, dataStr) {
+    console.table(dataStr);
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("Put", urlStr, true);
+    rawFile.setRequestHeader("Content-type", "application/json+fhir");
 
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4) {
+            ret = rawFile.responseText;
+            console.table(ret);
+        }
+    }
+    rawFile.send(dataStr);
 }

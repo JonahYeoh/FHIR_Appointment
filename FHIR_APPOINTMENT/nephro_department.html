@@ -7,9 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="department_stylesheet.css" />
     <title>Nephrology</title>
-    <style>
-
-    </style>
     <script src="Appointment.js"></script>
     <script src="HTTPGet.js"></script>
     <script>
@@ -27,22 +24,26 @@
             console.log("putAppointment()");
             let patientName = document.getElementById("userName").value;
             let patientId = document.getElementById("fhirId").value;
-            if (patientName == "" || patientId == "") {
+            if (patientName == "" || patientId == "")
                 alert("Incomplete Field");
-            } else {
-
-                let date = document.getElementById("date").innerHTML;
-                let apptType = document.getElementById("apptType").innerHTML;
-                let practitionerId = document.getElementById("doctor").innerHTML;
-                let slotId = "slt.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
-                console.log(slotId);
-                updateNephrology(slotId, practitionerId, apptType, date, patientName, patientId);
-            }
+            else 
+                verification(patientName,patientId);
         }
 
         function verification(patientName, patientId) {
-            let url = "http://hapi.fhir.org/baseDstu3/Patient/?_id=" + patientId + "&given=" + patientName;
+            let url = "http://hapi.fhir.org/baseDstu3/Patient/?organization=jonah&_id=" + patientId + "&given=" + patientName;
+            HTTPGetData(url);
+        }
 
+        function continueAppointment(){
+            let patientName = document.getElementById("userName").value;
+            let patientId = document.getElementById("fhirId").value;
+            let date = document.getElementById("date").innerHTML;
+            let apptType = document.getElementById("apptType").innerHTML;
+            let practitionerId = document.getElementById("doctor").innerHTML;
+            let slotId = "slt.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
+            console.log(slotId);
+            updateNephrology(slotId, practitionerId, apptType, date, patientName, patientId);
         }
     </script>
 </head>
@@ -90,7 +91,7 @@
     <form id="form2">
         <table id="table2">
             <tr>
-                <td>
+                <td class="left">
                     Selected Day:
                 </td>
                 <td>
@@ -98,7 +99,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="left">
                     Type:
                 </td>
                 <td>
@@ -106,7 +107,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="left">
                     Doctor:
                 </td>
                 <td>
@@ -114,7 +115,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="left">
                     Name
                 </td>
                 <td>
@@ -122,7 +123,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="left">
                     FHIR ID:
                 </td>
                 <td>

@@ -10,6 +10,10 @@ function HTTPGetData(urlStr) {
             ret = rawFile.responseText;
             alert("data retrieved");
             console.table(ret);
+            message = JSON.parse(ret);
+            if ( message.total != 0 ){
+                continueAppointment();
+            }
         }
     }
     rawFile.send();
