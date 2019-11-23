@@ -1,0 +1,70 @@
+#form1,
+#form2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1300px;
+    border: 1px groove darkgoldenrod;
+    overflow: hidden;
+}
+
+#table1,
+#table2 {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+#table2 {
+    max-width: 400px;
+    display: none;
+}
+
+#table2 tr td {
+    width: 50%;
+}
+
+#table1 tr th,
+#table1 tr td,
+#table2 tr td {
+    border: 1px groove darkblue;
+    border-collapse: collapse;
+    min-width: 150px;
+}
+
+#table1 tr th {
+    min-height: 50px;
+}
+
+#table1 tr td {
+    min-height: 75px;
+    text-align: center;
+}
+
+.btn {
+    border-style: none;
+    background-color: transparent;
+}
+
+img {
+    width: 30px;
+}
+
+.btnContainer {
+    display: inline-block;
+}
+
+#drImg1 {
+    display: none;
+}
+
+.btnContainer:hover~#drImg1 {
+    display: block;
+}
+
+#table2 {}
+
+input[type="text"] {
+    border-style: none;
+    background-color: lightgreen;
+    width: 99%;
+}

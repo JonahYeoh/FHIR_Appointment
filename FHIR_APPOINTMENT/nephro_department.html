@@ -5,58 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="department_stylesheet.css" />
     <title>Nephrology</title>
     <style>
-        #form1 {
-            margin-left: auto;
-            margin-right: auto;
-            width: 1300px;
-            border: 1px groove darkgoldenrod;
-            overflow: hidden;
-        }
-        
-        #table1 {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        #table1 tr th,
-        #table1 tr td {
-            border: 1px groove darkblue;
-            border-collapse: collapse;
-            min-width: 150px;
-        }
-        
-        #table1 tr th {
-            min-height: 50px;
-        }
-        
-        #table1 tr td {
-            min-height: 75px;
-            text-align: center;
-        }
-        .btn{
-            border-style:none;
-            background-color:transparent;
-        }
-        
-        img{
-            width:30px;
-        }
-        .btnContainer{
-            display:inline-block;
-        }
-        #drImg1{
-            display:none;
-        }
-        .btnContainer:hover ~ #drImg1{
-            display:block;
-        }
+
     </style>
+    <script src="Appointment.js"></script>
+    <script src="HTTPGet.js"></script>
     <script>
-        function put(information,practitionerId) {
-            console.log(information);
+        function put(date, practitionerId, apptType) {
+            console.log(date);
             console.log(practitionerId);
+            document.getElementById("date").innerHTML = date;
+            document.getElementById("doctor").innerHTML = practitionerId;
+            document.getElementById("apptType").innerHTML = apptType;
+            // 
+            document.getElementById("table2").style.display = "block";
+        }
+
+        function putAppointment() {
+            console.log("putAppointment()");
+            let patientName = document.getElementById("userName").value;
+            let patientId = document.getElementById("fhirId").value;
+            if (patientName == "" || patientId == "") {
+                alert("Incomplete Field");
+            } else {
+
+                let date = document.getElementById("date").innerHTML;
+                let apptType = document.getElementById("apptType").innerHTML;
+                let practitionerId = document.getElementById("doctor").innerHTML;
+                let slotId = "slt.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
+                console.log(slotId);
+                updateNephrology(slotId, practitionerId, apptType, date, patientName, patientId);
+            }
+        }
+
+        function verification(patientName, patientId) {
+            let url = "http://hapi.fhir.org/baseDstu3/Patient/?_id=" + patientId + "&given=" + patientName;
+
         }
     </script>
 </head>
@@ -75,24 +61,78 @@
                 <th>29-12-2019(Sun)</th>
             </tr>
             <tr>
-                <td>Morning Session</td>
-                <td><input type="button" class="btn" onclick="put('2019-12-23','AVT987');" value="Dr. Hagadaz" /></td>
+                <td>Walk In</td>
+                <td><input type="button" class="btn" onclick="put('2019-12-23','AVT987','WALKIN');" value="Dr. Hagadaz" /></td>
                 <td></td>
-                <td><input type="button" class="btn" onclick="put('2019-12-25','AVT987');" value="Dr. Hagadaz" /></td>
+                <td><input type="button" class="btn" onclick="put('2019-12-25','AVT987','WALKIN');" value="Dr. Hagadaz" /></td>
                 <td></td>
-                <td><input type="button" class="btn" onclick="put('2019-12-27','AVT987');" value="Dr. Hagadaz" /></td>
+                <td><input type="button" class="btn" onclick="put('2019-12-27','AVT987','WALKIN');" value="Dr. Hagadaz" /></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td>Afternoon Session</td>
+                <td>Follow Up</td>
                 <td></td>
-                <td><input type="button" class="btn" onclick="put('2019-12-24','AVT987');" value="Dr. Hagadaz" /></td>
+                <td><input type="button" class="btn" onclick="put('2019-12-24','AVT987','FOLLOWUP');" value="Dr. Hagadaz" /></td>
                 <td></td>
-                <td><input type="button" class="btn" onclick="put('2019-12-26','AVT987');" value="Dr. Hagadaz" /></td>
+                <td><input type="button" class="btn" onclick="put('2019-12-26','AVT987','FOLLOWUP');" value="Dr. Hagadaz" /></td>
                 <td></td>
-                <td><input type="button" class="btn" onclick="put('2019-12-28','AVT987');" value="Dr. Hagadaz" /></td>
+                <td><input type="button" class="btn" onclick="put('2019-12-28','AVT987','FOLLOWUP');" value="Dr. Hagadaz" /></td>
                 <td></td>
+            </tr>
+        </table>
+    </form>
+    <br/>
+    <br/>
+    <hr>
+    <br/>
+    <br/>
+    <form id="form2">
+        <table id="table2">
+            <tr>
+                <td>
+                    Selected Day:
+                </td>
+                <td>
+                    <label id="date"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type:
+                </td>
+                <td>
+                    <label id="apptType"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Doctor:
+                </td>
+                <td>
+                    <label id="doctor"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input type="text" id="userName" placeholder="Fill your name here" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    FHIR ID:
+                </td>
+                <td>
+                    <input type="text" id="fhirId" placeholder="Fill your FHIR id here" required />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" onclick="putAppointment();" value="Submit" />
+                </td>
             </tr>
         </table>
     </form>

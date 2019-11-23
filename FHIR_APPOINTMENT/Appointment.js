@@ -85,3 +85,17 @@ var Appointment = {
         "end": "2019-12-31"
     }]
 };
+
+function updateNephrology(slotId, practitionerId, apptType, date, patientName, patientId) {
+    Appointment.slot.reference = "Slot/" + slotId;
+    Appointment.participant[3].actor.reference = "Practitioner/" + practitionerId;
+    if (practitionerId != "AVT987")
+        Appointment.participant[3].actor.display = "Dr. Samuel";
+    Appointment.appointmentType.coding[0].code = apptType;
+    if (apptType != "WALKIN")
+        Appointment.appointmentType.coding[0].display = "A follow up visit from a previous appointment";
+    Appointment.requestedPeriod[0].start = date;
+    Appointment.requestedPeriod[0].end = date;
+
+
+}

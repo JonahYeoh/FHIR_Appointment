@@ -1,14 +1,16 @@
-function HTTPPutData(urlStr, dataStr) {
-    console.table(dataStr);
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("Put", urlStr, true);
-    rawFile.setRequestHeader("Content-type", "application/json+fhir");
+//取得網路上的資源
+var ret;
 
+function HTTPGetData(urlStr) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", urlStr, true);
+    rawFile.setRequestHeader("Content-type", "application/json+fhir");
     rawFile.onreadystatechange = function() {
         if (rawFile.readyState === 4) {
             ret = rawFile.responseText;
+            alert("data retrieved");
             console.table(ret);
         }
     }
-    rawFile.send(dataStr);
+    rawFile.send();
 }

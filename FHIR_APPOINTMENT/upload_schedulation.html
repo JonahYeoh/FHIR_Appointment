@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +10,22 @@
     <script src="Schedule_Cardiology.js"></script>
     <script src="HTTPPut.js"></script>
     <script>
-        function portal(){
-            if ( document.getElementById("department").value == "Nephrology")
-                updateNephro(document.getElementById("date").value,document.getElementById("pid").value);
+        function portal() {
+            if (document.getElementById("department").value == "Nephrology")
+                updateNephro(document.getElementById("date").value, document.getElementById("pid").value);
             else
-                updateCardio(document.getElementById("date").value,document.getElementById("pid").value);
+                updateCardio(document.getElementById("date").value, document.getElementById("pid").value);
         }
     </script>
 </head>
+
 <body>
-    Date: <input type="text" id="date" />
-    Practitioner Id: <input type="text" id="pid" />
-    Department: 
+    Date: <input type="text" id="date" /> Practitioner Id: <input type="text" id="pid" /> Department:
     <select id="department">
         <option value="Nephrology">Nep</option>
         <option value="Cardiology">Car</option>
     </select>
     <input type="button" onclick="portal();" value="btn" />
 </body>
+
 </html>

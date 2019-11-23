@@ -52,7 +52,7 @@ var scheduleNep = {
 function updateNephro(date, practitionerId) {
     //console.log(schedule);
     var name = "";
-    switch(practitionerId){
+    switch (practitionerId) {
         case "AVT987":
             name = "Dr. Hagadaz";
             break;
@@ -60,7 +60,7 @@ function updateNephro(date, practitionerId) {
             name = "Dr. Samuel";
             break;
     }
-    scheduleNep.id = "sch.nep." + practitionerId + "." + date.substring(0,4) + date.substring(5,7) + date.substring(8,10);
+    scheduleNep.id = "sch.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
     scheduleNep.actor[1].reference = "Practitioner/" + practitionerId;
     scheduleNep.actor[1].display = name;
     scheduleNep.actor[2].reference = "PractitionerRole/" + practitionerId + "HFC";
@@ -68,19 +68,19 @@ function updateNephro(date, practitionerId) {
     scheduleNep.planningHorizon.end = date + "T09:30:00Z";
     console.table(scheduleNep);
     var data = JSON.stringify(scheduleNep);
-    var url =  "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleNep.id;
+    var url = "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleNep.id;
     alert(data);
     HTTPPutData(url, data);
 }
 
-function HTTPPutData(urlStr, dataStr){
+function HTTPPutData(urlStr, dataStr) {
     console.table(dataStr);
     var rawFile = new XMLHttpRequest();
     rawFile.open("Put", urlStr, true);
     rawFile.setRequestHeader("Content-type", "application/json+fhir");
 
-    rawFile.onreadystatechange = function(){
-        if ( rawFile.readyState === 4 ){
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4) {
             ret = rawFile.responseText;
             console.table(ret);
         }
