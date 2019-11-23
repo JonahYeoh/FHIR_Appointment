@@ -11,9 +11,10 @@ function HTTPGetData(urlStr) {
             alert("data retrieved");
             console.table(ret);
             message = JSON.parse(ret);
-            if ( message.total != 0 ){
+            if ( message.total == 1 )
                 continueAppointment();
-            }
+            else
+                alert("Invalid Name or ID, please enter again");
         }
     }
     rawFile.send();

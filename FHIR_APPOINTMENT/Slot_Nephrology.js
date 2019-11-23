@@ -40,14 +40,11 @@ var Slot = {
 };
 
 function updateNephro(practitionerId, date, scheduleId) {
-    alert("Entered");
     Slot.id = "slt.nep." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
     Slot.start = date + "T09:15:00Z";
     Slot.end = date + "T09:30:00Z";
     Slot.schedule.reference = "Schedule/" + scheduleId;
-    console.table(Slot);
     var data = JSON.stringify(Slot);
     var url = "http://hapi.fhir.org/baseDstu3/Slot/" + Slot.id;
-    alert(data);
     HTTPPutData(url, data);
 }

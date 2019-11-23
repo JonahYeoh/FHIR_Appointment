@@ -46,6 +46,11 @@
     background-color: transparent;
 }
 
+.btn:hover{
+    color:darkblue;
+    font-weight:bold;
+}
+
 img {
     width: 30px;
 }
@@ -72,3 +77,4 @@ input[type="text"] {
     background-color: lightgreen;
     width: 99%;
 }
+

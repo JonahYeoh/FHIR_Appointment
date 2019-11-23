@@ -48,7 +48,6 @@ var scheduleCar = {
 };
 
 function updateCardio(date, practitionerId) {
-    //console.log(schedule);
     var name = "";
     switch(practitionerId){
         case "Nx003":
@@ -64,10 +63,8 @@ function updateCardio(date, practitionerId) {
     scheduleCar.actor[2].reference = "PractitionerRole/" + practitionerId + "HFC";
     scheduleCar.planningHorizon.start = date + "T09:15:00Z";
     scheduleCar.planningHorizon.end = date + "T09:30:00Z";
-    console.table(scheduleCar);
     var data = JSON.stringify(scheduleCar);
     var url =  "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleCar.id;
-    alert(data);
     HTTPPutData(url, data);
 }
 

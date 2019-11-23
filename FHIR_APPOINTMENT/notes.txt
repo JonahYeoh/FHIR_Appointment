@@ -6,5 +6,5 @@ http://hapi.fhir.org/baseDstu3/Slot?start=lt2013-12-31&start=gt2013-12-01&status
 
 id format:
 
-schedule : 
+id : 
 resouces.department.practitionerId.yyyymmdd ( sch.nep.AVT987.20191214 )

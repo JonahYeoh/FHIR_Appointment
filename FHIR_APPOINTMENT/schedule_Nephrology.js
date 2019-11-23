@@ -50,7 +50,6 @@ var scheduleNep = {
 };
 
 function updateNephro(date, practitionerId) {
-    //console.log(schedule);
     var name = "";
     switch (practitionerId) {
         case "AVT987":
@@ -66,15 +65,12 @@ function updateNephro(date, practitionerId) {
     scheduleNep.actor[2].reference = "PractitionerRole/" + practitionerId + "HFC";
     scheduleNep.planningHorizon.start = date + "T09:15:00Z";
     scheduleNep.planningHorizon.end = date + "T09:30:00Z";
-    console.table(scheduleNep);
     var data = JSON.stringify(scheduleNep);
     var url = "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleNep.id;
-    alert(data);
     HTTPPutData(url, data);
 }
 
 function HTTPPutData(urlStr, dataStr) {
-    console.table(dataStr);
     var rawFile = new XMLHttpRequest();
     rawFile.open("Put", urlStr, true);
     rawFile.setRequestHeader("Content-type", "application/json+fhir");
