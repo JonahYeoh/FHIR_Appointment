@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Read Me</title>
+	</head>
+<body>
+	<h3>Regex: </h3>
+	resources.id : Regex [A-Za-z0-9\-\.]{1,64}<br/>
+
+	<h3>id format:</h3>
+	resouces.department.practitionerId.yyyymmdd ( sch.nep.AVT987.20191214 )<br/>
+
+	<h3>Query: </h3>
+	<h4>Slot</h4>
+		<a href="http://hapi.fhir.org/baseDstu3/Slot?start=lt2013-12-31&start=gt2013-12-01&status=busy">Sample</a><br/>
+	<ul>
+		<li><a href="http://hapi.fhir.org/baseDstu3/Slot?_id=slt.nep.AVT987.20191203">Search By Slot id</a></li>
+		<li><a href="http://hapi.fhir.org/baseDstu3/Slot?start=lt2013-12-31">Search By Start Date</a></li>
+		<li><a href="http://hapi.fhir.org/baseDstu3/Slot?status=free">Search By Status</a></li>
+		<li><a href="http://hapi.fhir.org/baseDstu3/Slot?schedule=sch.nep.AVT987.20191203">Search By Schedule id</a></li>
+	</ul>
+	<h4>Schedule:</h4>
+		<a href="http://hapi.fhir.org/baseDstu3/Schedule?date=gt2019-12-23&actor=AVT987">Sample</a><br/>
+		<ul>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Schedule?_id=sch.nep.AVT987.20191203">Search By Schedule id</a></li>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Schedule?date=gt2019-12-23">Search By Date</a></li>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Schedule?actor=AVT987">Search By Actor</a></li>
+		</ul>
+	<h4>Appointment</h4>
+		<ul>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Appointment?patient=J123">Search By Patient id</a></li>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Appointment?practitioner=Sx002">Search By practitioner id</a></li>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Appointment?location=JonahCardiology">Search By Location id</a></li>
+			<li><a href="http://hapi.fhir.org/baseDstu3/Appointment?status=proposed">Search By Status</a></li>
+		</ul>
+</body>
+</html>
+
+
