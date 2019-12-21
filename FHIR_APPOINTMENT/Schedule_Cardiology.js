@@ -1,6 +1,6 @@
 var scheduleCar = {
     "resourceType": "Schedule",
-    "id": "schCardio25122019",
+    "id": "schCardio25122020",
     "text": {
         "status": "generated",
         "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      Clinic For Christ, Cardiology Department\n    </div>"
@@ -39,10 +39,15 @@ var scheduleCar = {
     {
         "reference":"PractitionerRole/Jx009HFC",
         "display":"Doctor"
-    }],
+    }
+	,
+	{
+		"reference": "HealthcareService/hsv.car.jonah",
+		"display":"Clinic For Christ, Cardiology Department"
+	}],
     "planningHorizon": {
-        "start": "2019-12-25T09:15:00Z",
-        "end": "2019-12-25T09:30:00Z"
+        "start": "2020-12-25T09:15:00Z",
+        "end": "2020-12-25T09:30:00Z"
     },
     "comment": "This slot is for cardiology specialist consultation"
 };

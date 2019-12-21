@@ -1,6 +1,6 @@
 var scheduleNep = {
     "resourceType": "Schedule",
-    "id": "schNephro27122019",
+    "id": "schNephro27122020",
     "text": {
         "status": "generated",
         "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      Clinic For Christ, Nephrology Department\n    </div>"
@@ -40,11 +40,15 @@ var scheduleNep = {
         {
             "reference": "PractitionerRole/AVT987HFC",
             "display": "Doctor"
-        }
+        },
+		{
+			"reference": "HealthcareService/hsv.nep.jonah",
+			"display":"Clinic For Christ, Nephrology Department"
+		}
     ],
     "planningHorizon": {
-        "start": "2019-12-27T09:15:00Z",
-        "end": "2019-12-27T09:30:00Z"
+        "start": "2020-12-27T09:15:00Z",
+        "end": "2020-12-27T09:30:00Z"
     },
     "comment": "This slot is for nephrology specialist consultation"
 };
