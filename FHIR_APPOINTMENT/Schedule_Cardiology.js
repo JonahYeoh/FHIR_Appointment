@@ -30,21 +30,21 @@ var scheduleCar = {
         }]
     }],
     "actor": [{
-        "reference":"Location/JonahCardiology",
-        "display":"Clinic For Christ, Cardiology Department"
-    },{
-        "reference":"Practitioner/Jx009",
-        "display":"Dr. James"
-    },
-    {
-        "reference":"PractitionerRole/Jx009HFC",
-        "display":"Doctor"
-    }
-	,
-	{
-		"reference": "HealthcareService/hsv.car.jonah",
-		"display":"Clinic For Christ, Cardiology Department"
-	}],
+            "reference": "Location/JonahCardiology",
+            "display": "Clinic For Christ, Cardiology Department"
+        }, {
+            "reference": "Practitioner/Jx009",
+            "display": "Dr. James"
+        },
+        {
+            "reference": "PractitionerRole/Jx009HFC",
+            "display": "Doctor"
+        },
+        {
+            "reference": "HealthcareService/hsv.car.jonah",
+            "display": "Clinic For Christ, Cardiology Department"
+        }
+    ],
     "planningHorizon": {
         "start": "2020-12-25T09:15:00Z",
         "end": "2020-12-25T09:30:00Z"
@@ -54,7 +54,7 @@ var scheduleCar = {
 
 function updateCardio(date, practitionerId) {
     var name = "";
-    switch(practitionerId){
+    switch (practitionerId) {
         case "Nx003":
             name = "Dr. Noah";
             break;
@@ -62,25 +62,25 @@ function updateCardio(date, practitionerId) {
             name = "Dr. William";
             break;
     }
-    scheduleCar.id = "sch.car." + practitionerId + "." + date.substring(0,4) + date.substring(5,7) + date.substring(8,10);
+    scheduleCar.id = "sch.car." + practitionerId + "." + date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10);
     scheduleCar.actor[1].reference = "Practitioner/" + practitionerId;
     scheduleCar.actor[1].display = name;
     scheduleCar.actor[2].reference = "PractitionerRole/" + practitionerId + "HFC";
     scheduleCar.planningHorizon.start = date + "T09:15:00Z";
     scheduleCar.planningHorizon.end = date + "T09:30:00Z";
     var data = JSON.stringify(scheduleCar);
-    var url =  "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleCar.id;
+    var url = "http://hapi.fhir.org/baseR4/Schedule/" + scheduleCar.id;
     HTTPPutData(url, data);
 }
 
-function HTTPPutData(urlStr, dataStr){
+function HTTPPutData(urlStr, dataStr) {
     console.table(dataStr);
     var rawFile = new XMLHttpRequest();
     rawFile.open("Put", urlStr, true);
     rawFile.setRequestHeader("Content-type", "application/json+fhir");
 
-    rawFile.onreadystatechange = function(){
-        if ( rawFile.readyState === 4 ){
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4) {
             ret = rawFile.responseText;
             console.table(ret);
         }

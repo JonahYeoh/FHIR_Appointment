@@ -25,29 +25,29 @@
             let patientId = document.getElementById("fhirId").value;
             let apptType = 0;
             let apptTypes = document.getElementsByName("apptType");
-            for ( i = 0; i < apptTypes.length; i++ ){
-                if ( apptTypes[i].checked )
+            for (i = 0; i < apptTypes.length; i++) {
+                if (apptTypes[i].checked)
                     apptType = apptTypes[i].value;
             }
-            if (patientName == "" || patientId == "" || apptType == 0 )
+            if (patientName == "" || patientId == "" || apptType == 0)
                 alert("Incomplete Field");
-            else 
-                verification(patientName,patientId);
+            else
+                verification(patientName, patientId);
         }
 
         function verification(patientName, patientId) {
-            let url = "http://hapi.fhir.org/baseDstu3/Patient/?organization=jonah&_id=" + patientId + "&given=" + patientName;
+            let url = "http://hapi.fhir.org/baseR4/Patient/?organization=jonah&_id=" + patientId + "&given=" + patientName;
             HTTPGetData(url);
         }
 
-        function continueAppointment(){
+        function continueAppointment() {
             let patientName = document.getElementById("userName").value;
             let patientId = document.getElementById("fhirId").value;
             let date = document.getElementById("date").innerHTML;
             let apptType;
             let apptTypes = document.getElementsByName("apptType");
-            for ( i = 0; i < apptTypes.length; i++ ){
-                if ( apptTypes[i].checked )
+            for (i = 0; i < apptTypes.length; i++) {
+                if (apptTypes[i].checked)
                     apptType = apptTypes[i].value;
             }
             let practitionerId = document.getElementById("doctor").innerHTML;

@@ -41,10 +41,10 @@ var scheduleNep = {
             "reference": "PractitionerRole/AVT987HFC",
             "display": "Doctor"
         },
-		{
-			"reference": "HealthcareService/hsv.nep.jonah",
-			"display":"Clinic For Christ, Nephrology Department"
-		}
+        {
+            "reference": "HealthcareService/hsv.nep.jonah",
+            "display": "Clinic For Christ, Nephrology Department"
+        }
     ],
     "planningHorizon": {
         "start": "2020-12-27T09:15:00Z",
@@ -70,7 +70,7 @@ function updateNephro(date, practitionerId) {
     scheduleNep.planningHorizon.start = date + "T09:15:00Z";
     scheduleNep.planningHorizon.end = date + "T09:30:00Z";
     var data = JSON.stringify(scheduleNep);
-    var url = "http://hapi.fhir.org/baseDstu3/Schedule/" + scheduleNep.id;
+    var url = "http://hapi.fhir.org/baseR4/Schedule/" + scheduleNep.id;
     HTTPPutData(url, data);
 }
 

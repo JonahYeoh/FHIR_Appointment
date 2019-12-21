@@ -78,6 +78,13 @@ var Appointment = {
             },
             "required": "required",
             "status": "needs-action"
+        }, {
+            "actor": {
+                "reference": "HealthcareService/hsv.car.jonah",
+                "display": "Clinic For Christ, Cardiology Department"
+            },
+            "required": "required",
+            "status": "needs-action"
         }
     ],
     "requestedPeriod": [{
@@ -98,16 +105,16 @@ function updateCardiology(slotId, practitionerId, apptType, date, patientName, p
     Appointment.participant[3].actor.reference = "Practitioner/" + practitionerId;
     if (practitionerId != "Nx003")
         Appointment.participant[3].actor.display = "Dr. William";
-    Appointment.participant[0].actor.reference = "Patient/" +　patientId;
+    Appointment.participant[0].actor.reference = "Patient/" + 　patientId;
     Appointment.participant[0].actor.display = patientName;
     Appointment.appointmentType.coding[0].code = apptType;
     if (apptType != "WALKIN")
         Appointment.appointmentType.coding[0].display = "A follow up visit from a previous appointment";
     Appointment.requestedPeriod[0].start = date;
     Appointment.requestedPeriod[0].end = date;
-    var url = "http://hapi.fhir.org/baseDstu3/Appointment/" + Appointment.id;
+    var url = "http://hapi.fhir.org/baseR4/Appointment/" + Appointment.id;
     var data = JSON.stringify(Appointment);
-    HTTPPutData(url,data);
+    HTTPPutData(url, data);
 }
 
 function HTTPPutData(urlStr, dataStr) {

@@ -45,6 +45,6 @@ function updateNephro(practitionerId, date, scheduleId) {
     Slot.end = date + "T09:30:00Z";
     Slot.schedule.reference = "Schedule/" + scheduleId;
     var data = JSON.stringify(Slot);
-    var url = "http://hapi.fhir.org/baseDstu3/Slot/" + Slot.id;
+    var url = "http://hapi.fhir.org/baseR4/Slot/" + Slot.id;
     HTTPPutData(url, data);
 }
