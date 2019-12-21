@@ -78,6 +78,13 @@ var Appointment = {
             },
             "required": "required",
             "status": "needs-action"
+        }, {
+            "actor": {
+                "reference": "HealthcareService/hsv.nep.jonah",
+                "display": "Clinic For Christ, Nephrology Department"
+            },
+            "required": "required",
+            "status": "needs-action"
         }
     ],
     "requestedPeriod": [{
